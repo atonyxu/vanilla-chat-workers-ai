@@ -1,4 +1,4 @@
-name: Cloudfalre Worker Deploy
+name: Cloudfalre Pages Deploy
 on:
   push:
     branches:
@@ -12,10 +12,11 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v2
-      - name: Build & Deploy Worker
-        uses: cloudflare/wrangler-action@v3
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
         with:
           apiToken: UD4sHVYSj3crHOxtGqhmjmVPum-4q6N2R71WvbKD
           accountId: 85542ea7b47219a8449eef1fa8052563
-          preCommands: 'yarn'
-          command: 'deploy'
+          projectName: chat-ai
+          directory: "./dist"
+          wranglerVersion: '3'
